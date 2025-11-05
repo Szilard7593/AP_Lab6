@@ -17,6 +17,9 @@ class UI:
        print("8.Update laborator")
        print("9.Cauta un student")
        print("10.Cauta o problema de laborator")
+       print("20.Noteaza un student: ")
+       print("21.Arata toate notele studentilor:")
+
        print("11.Toti studentii cu media notelor de la lab mai mica de 5")
        print("12.Lista de studenți și notele lor la o problema de laborator data, ordonata: alfabetic după nume, după notă.")
        print("13.Exit")
@@ -50,11 +53,17 @@ class UI:
                     self.CautaunLaborator()
                 case 11:
                     self.AdaugaNotare()
-                    self.showNote()
                 case 12:
-                    pass
+                    self.studentiInOrdineAlfa()
                 case 13:
                     exit(0)
+                case 21:
+                    self.print_all_note()
+                case 20:
+                    self.AdaugaNotare()
+                case _:
+                    print("Optiune inexistenta!")
+                    continue
 
 
     def AdaugaunStudent(self):
@@ -118,11 +127,14 @@ class UI:
 
     def AdaugaNotare(self):
         id = int(input("Introduceti id-ul studentului: "))
+        student_found = self.serviceStudent.cauta_student(id)
         numar_lab = int(input("Introduceti numarul laboratorului: "))
+        lab_found = self.serviceLab.cauta_problema(numar_lab)
         nota = int(input("Introduceti nota studentului: "))
-        self.serviceNota.addNote(id,numar_lab,nota)
-        
-    def showNote(self):
-        note = self.serviceNota.getToateNotele()
-        for notes in note:
+        self.serviceNota.addNote(student_found,lab_found,nota)
+
+    def print_all_note(self):
+        all_notes = self.serviceNota.getAllNote()
+        for note in all_notes:
             print(note)
+        

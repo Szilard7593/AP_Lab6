@@ -9,6 +9,6 @@ class serviceNota:
         n = Nota(student_id,problema_numar,nota)
         self.RepoNota.addNote(n)
     
-    def getToateNotele(self):
+    def getAllNote(self):
         return self.RepoNota.getall()
 

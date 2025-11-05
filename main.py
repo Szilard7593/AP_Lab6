@@ -1,3 +1,4 @@
+from Entitati.Nota import Nota
 from Entitati.ProblemaLaborator import ProblemaLaborator
 from Entitati.Student import Student
 from Repository.RepoLab import RepoLab
@@ -41,6 +42,19 @@ def main():
     problema_repo.addLab(l3)
     problema_repo.addLab(l4)
     problema_repo.addLab(l5)
+
+    n1 = Nota(s1,l1,4)
+    n2 = Nota(s1,l2,10)
+    n3 = Nota(s1,l3,7)
+    n4 = Nota(s2,l4,10)
+    n5 = Nota(s3,l5,5)
+
+    nota_repo.addNote(n1)
+    nota_repo.addNote(n2)
+    nota_repo.addNote(n3)
+    nota_repo.addNote(n4)
+    nota_repo.addNote(n5)
+
 
     console = UI(student_service, problema_service,nota_service)
     console.run()

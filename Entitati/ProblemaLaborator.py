@@ -30,4 +30,4 @@ class ProblemaLaborator:
         self.deadline = deadline
 
     def __str__(self):
-        return f"Numar laborator: {self.numar_laborator} , Numar problema: {self.numar_problema} , Descriere: {self.descriere} , Deadline: {self.deadline}"
+        return f"LAB(Numar laborator: {self.numar_laborator} , Numar problema: {self.numar_problema} , Descriere: {self.descriere} , Deadline: {self.deadline})"
