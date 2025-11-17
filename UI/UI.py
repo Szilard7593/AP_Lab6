@@ -1,8 +1,11 @@
+from Service.serviceNota import serviceNota
+
+
 class UI:
     def __init__(self,serviceStudent,serviceLab,serviceNota):
-        self.serviceStudent = serviceStudent
-        self.serviceLab = serviceLab
-        self.serviceNota = serviceNota
+        self.__serviceStudent = serviceStudent
+        self.__serviceLab = serviceLab
+        self.__serviceNota = serviceNota
 
 
     @staticmethod
@@ -21,7 +24,7 @@ class UI:
        print("21.Arata toate notele studentilor:")
 
        print("11.Toti studentii cu media notelor de la lab mai mica de 5")
-       print("12.Lista de studenți și notele lor la o problema de laborator data, ordonata: alfabetic după nume, după notă.")
+       print("14.Lista de studenți și notele lor la o problema de laborator data, ordonata: alfabetic după nume, după notă.")
        print("13.Exit")
 
     def run(self):
@@ -51,16 +54,13 @@ class UI:
                     self.CautaunStudent()
                 case 10:
                     self.CautaunLaborator()
-                case 11:
-                    self.AdaugaNotare()
-                case 12:
-                    self.studentiInOrdineAlfa()
                 case 13:
                     exit(0)
                 case 21:
                     self.print_all_note()
                 case 20:
                     self.AdaugaNotare()
+
                 case _:
                     print("Optiune inexistenta!")
                     continue
@@ -70,7 +70,7 @@ class UI:
         id = int(input("ID Student:  "))
         nume = input("Nume student: ")
         grupa = input("Grupa student: ")
-        student = self.serviceStudent.adauga_student(id,nume,grupa)
+        student = self.__serviceStudent.adauga_student(id,nume,grupa)
         print("Studentul a fost adaugat cu succes!")
 
     def AdaugaunLaborator(self):
@@ -78,34 +78,34 @@ class UI:
         problema_lab = int(input("Problema laborator: "))
         descriere = input("Descriere laborator: ")
         deadline = input("Deadline laborator: ")
-        laborator = self.serviceLab.adauga_problema(id_lab,problema_lab,descriere ,deadline)
+        laborator = self.__serviceLab.adauga_problema(id_lab,problema_lab,descriere ,deadline)
         print("Laboratorul a fost adaugat cu succes!")
 
     def AfiseazaStudenti(self):
-        studenti = self.serviceStudent.get_toti_studentii()
+        studenti = self.__serviceStudent.get_toti_studentii()
         for student in studenti:
             print(student)
 
     def AfiseazaLaboratori(self):
-        laboratori = self.serviceLab.get_toate_problemele()
+        laboratori = self.__serviceLab.get_toate_problemele()
         for laborator in laboratori:
             print(laborator)
 
     def StergeunStudent(self):
         id = int(input("ID Student:  "))
-        student = self.serviceStudent.sterge_student(id)
+        student = self.__serviceStudent.sterge_student(id)
         print("Studentul a fost sterget cu succes!")
 
     def stergeunLaborator(self):
         numar_laborator = int(input("Numar Laborator:  "))
-        laborator = self.serviceLab.sterge_problema(numar_laborator)
+        laborator = self.__serviceLab.sterge_problema(numar_laborator)
         print("Laboratorul a fost sterget cu succes!")
 
     def updateStudent(self):
         id = int(input("ID Student:  "))
         nume = input("Nume student: ")
         grupa = int(input("Grupa student: "))
-        student = self.serviceStudent.update_student(id,nume,grupa)
+        student = self.__serviceStudent.update_student(id,nume,grupa)
         print("Studentul a fost update cu succes!")
 
     def updateLaborator(self):
@@ -113,28 +113,28 @@ class UI:
         numar_problema = int(input("Numar problema de laborator: "))
         descriere = input("Descriere laborator: ")
         deadline = input("Deadline laborator: ")
-        laborator = self.serviceLab.update_problema(numar_lab,numar_problema,descriere,deadline)
+        laborator = self.__serviceLab.update_problema(numar_lab,numar_problema,descriere,deadline)
         print("Laboratorul a fost update cu succes!")
 
     def CautaunStudent(self):
         id_student = int(input("ID Student:  "))
-        student = self.serviceStudent.cauta_student(id_student)
+        student = self.__serviceStudent.cauta_student(id_student)
         print(student)
 
     def CautaunLaborator(self):
         id_laborator = int(input("Numar laborator:  "))
-        laborator = self.serviceLab.cauta_problema(id_laborator)
+        laborator = self.__serviceLab.cauta_problema(id_laborator)
+        print(laborator)
 
     def AdaugaNotare(self):
         id = int(input("Introduceti id-ul studentului: "))
-        student_found = self.serviceStudent.cauta_student(id)
+        student_found = self.__serviceStudent.cauta_student(id)
         numar_lab = int(input("Introduceti numarul laboratorului: "))
-        lab_found = self.serviceLab.cauta_problema(numar_lab)
+        lab_found = self.__serviceLab.cauta_problema(numar_lab)
         nota = int(input("Introduceti nota studentului: "))
-        self.serviceNota.addNote(student_found,lab_found,nota)
+        self.__serviceNota.addNote(student_found,lab_found,nota)
 
     def print_all_note(self):
-        all_notes = self.serviceNota.getAllNote()
+        all_notes = self.__serviceNota.getAllNote()
         for note in all_notes:
             print(note)
-        

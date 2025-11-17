@@ -1,48 +1,34 @@
 class RepoStudent:
     def __init__(self):
-        self.students = []
+        self.__students = []
 
     def addStudent(self, student):
-        self.students.append(student)
+        self.__students.append(student)
 
     def getStudents(self):
-        return self.students
+        return self.__students
 
     def getAllStudents(self):
-        return list(self.students)
+        return list(self.__students)
 
     def getStudentById(self, id):
-        for student in self.students:
-            if student.student_id == id:
+        for student in self.__students:
+            if student.get_student_id() == id:
                 return student
         return None
 
     def getStudentByName(self, name):
-        for student in self.students:
+        for student in self.__students:
             if student.name == name:
                 return student
+        return None
 
     def deleteStudent(self, id):
-        for student in self.students:
-            if student.student_id == id:
-                self.students.remove(student)
-                return True
+        for student in self.__students:
+            if student.get_student_id() == id:
+                self.__students.remove(student)
         return False
 
-    def updateStudent(self, student_id, name, grupa):
-        for student in self.students:
-            if student.student_id == id:
-                student.name = name
-                student.grupa = grupa
-
-    def getStudentCount(self):
-        return len(self.students)
-
-    def getStudentByAge(self, age):
-        students = []
-
-    def getStudentByGrade(self, grade):
-        students = []
 
 
 

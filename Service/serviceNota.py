@@ -3,12 +3,20 @@ from Entitati.Nota import Nota
 
 class serviceNota:
     def __init__(self,RepoNota):
-        self.RepoNota = RepoNota
+        self.__RepoNota = RepoNota
 
     def addNote(self,student_id,problema_numar,nota):
         n = Nota(student_id,problema_numar,nota)
-        self.RepoNota.addNote(n)
+        self.__RepoNota.addNote(n)
     
     def getAllNote(self):
-        return self.RepoNota.getall()
+        return self.__RepoNota.getall()
+
+    def getNota(self):
+        return self.__RepoNota.getNote()
+
+
+
+
+
 
