@@ -5,9 +5,6 @@ class RepoStudent:
     def addStudent(self, student):
         self.__students.append(student)
 
-    def getStudents(self):
-        return self.__students
-
     def getAllStudents(self):
         return list(self.__students)
 
@@ -17,11 +14,6 @@ class RepoStudent:
                 return student
         return None
 
-    def getStudentByName(self, name):
-        for student in self.__students:
-            if student.name == name:
-                return student
-        return None
 
     def deleteStudent(self, id):
         for student in self.__students:

@@ -1,4 +1,3 @@
-from Service.serviceNota import serviceNota
 
 
 class UI:
@@ -24,16 +23,15 @@ class UI:
        print("21.Arata toate notele studentilor:")
 
        print("11.Toti studentii cu media notelor de la lab mai mica de 5")
-       print("14.Lista de studenți și notele lor la o problema de laborator data, ordonata: alfabetic după nume, după notă.")
+       print("24.Lista de studenți și notele lor la o problema de laborator data, ordonata: alfabetic după nume, după notă.")
        print("13.Exit")
 
     def run(self):
         while True:
             self.meniu()
-
-            optiune = int(input(("Introduceti optiunea dorita: ")))
+            opțiune = int(input("Introduceti optiunea dorita: "))
             
-            match optiune:
+            match opțiune:
                 case 1:
                     self.AdaugaunStudent()
                 case 2:
@@ -60,7 +58,10 @@ class UI:
                     self.print_all_note()
                 case 20:
                     self.AdaugaNotare()
-
+                case 24:
+                    self.afiseaza_studenti_problema_alfabetic()
+                    self.afiseaza_studenti_problema_dupa_nota()
+                    self.afiseaza_studenti_media_sub_5()
                 case _:
                     print("Optiune inexistenta!")
                     continue
@@ -70,7 +71,7 @@ class UI:
         id = int(input("ID Student:  "))
         nume = input("Nume student: ")
         grupa = input("Grupa student: ")
-        student = self.__serviceStudent.adauga_student(id,nume,grupa)
+        self.__serviceStudent.adauga_student(id,nume,grupa)
         print("Studentul a fost adaugat cu succes!")
 
     def AdaugaunLaborator(self):
@@ -78,7 +79,7 @@ class UI:
         problema_lab = int(input("Problema laborator: "))
         descriere = input("Descriere laborator: ")
         deadline = input("Deadline laborator: ")
-        laborator = self.__serviceLab.adauga_problema(id_lab,problema_lab,descriere ,deadline)
+        self.__serviceLab.adauga_problema(id_lab,problema_lab,descriere ,deadline)
         print("Laboratorul a fost adaugat cu succes!")
 
     def AfiseazaStudenti(self):
@@ -93,19 +94,19 @@ class UI:
 
     def StergeunStudent(self):
         id = int(input("ID Student:  "))
-        student = self.__serviceStudent.sterge_student(id)
+        self.__serviceStudent.sterge_student(id)
         print("Studentul a fost sterget cu succes!")
 
     def stergeunLaborator(self):
-        numar_laborator = int(input("Numar Laborator:  "))
-        laborator = self.__serviceLab.sterge_problema(numar_laborator)
+        numar_problema = int(input("Numar problema:  "))
+        self.__serviceLab.sterge_problema(numar_problema)
         print("Laboratorul a fost sterget cu succes!")
 
     def updateStudent(self):
         id = int(input("ID Student:  "))
         nume = input("Nume student: ")
         grupa = int(input("Grupa student: "))
-        student = self.__serviceStudent.update_student(id,nume,grupa)
+        self.__serviceStudent.update_student(id,nume,grupa)
         print("Studentul a fost update cu succes!")
 
     def updateLaborator(self):
@@ -138,3 +139,46 @@ class UI:
         all_notes = self.__serviceNota.getAllNote()
         for note in all_notes:
             print(note)
+
+    def afiseaza_studenti_problema_alfabetic(self):
+        try:
+            numar_lab = int(input("Introduceți numărul laboratorului: "))
+            numar_prob = int(input("Introduceți numărul problemei: "))
+
+            rezultat = self.__serviceNota.lista_studenti_problema_alfabetic(numar_lab, numar_prob)
+
+            print(f"\n Studenți la Laborator {numar_lab}, Problema {numar_prob} (Alfabetic) ")
+            if not rezultat:
+                print("Nu există note pentru această problemă.")
+            else:
+                for item in rezultat:
+                    print(f"{item['nume']}: {item['nota']}")
+        except ValueError:
+            print("Eroare: Introduceți numere valide!")
+
+    def afiseaza_studenti_problema_dupa_nota(self):
+        try:
+            numar_lab = int(input("Introduceți numărul laboratorului: "))
+            numar_prob = int(input("Introduceți numărul problemei: "))
+
+            rezultat = self.__serviceNota.lista_studenti_problema_dupa_nota(numar_lab, numar_prob)
+
+            print(f"\n Studenți la Laborator {numar_lab}, Problema {numar_prob} (După notă) ")
+            if not rezultat:
+                print("Nu există note pentru această problemă.")
+            else:
+                for item in rezultat:
+                    print(f"{item['nume']}: {item['nota']}")
+        except ValueError:
+            print("Eroare: Introduceți numere valide!")
+
+    def afiseaza_studenti_media_sub_5(self):
+        rezultat = self.__serviceNota.studenti_media_sub_5()
+
+        print("\n Studenți cu media notelor < 5 ")
+        if not rezultat:
+            print("Nu există studenți cu media sub 5.")
+        else:
+            for item in rezultat:
+                print(f"{item['nume']}: Media = {item['media']}")
+                print(f"  Note: {item['note']}")
