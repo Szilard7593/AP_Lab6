@@ -7,7 +7,7 @@ class RepoStudent:
             raise ValueError("Student ID cannot be negative")
         for stud in self.__students:
             if stud.get_student_id() == student.get_student_id():
-                raise ValueError("Student ID already       exists")
+                raise ValueError("Student ID already exists")
         self.__students.append(student)
 
     def getAllStudents(self):

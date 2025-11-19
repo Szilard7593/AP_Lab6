@@ -1,4 +1,3 @@
-from logging import exception
 from unittest import TestCase
 
 from Entitati.Student import Student
@@ -50,5 +49,8 @@ class TestRepoStudent(TestCase):
         student = Student(1, "Mihai", 321)
         student2 = Student(1, "Daria", 123)
         repo.addStudent(student)
-        repo.addStudent(student2)
-        self.assertRaises(Exception )
+        #Deci mai pe scurt verifica daca repo.addStudent(student), cand este
+        #apelat din nou, returneaza un valueerror
+        self.assertRaises(ValueError, repo.addStudent, student)
+        with self.assertRaises(ValueError):
+            repo.addStudent(student)
