@@ -1,12 +1,12 @@
 class Student:
     def __init__(self,student_id:int , nume: str ,grupa: int):
+        if int(student_id) < 0:
+            raise ValueError("Student ID invalid!")
         self.__student_id = student_id
         self.__nume = nume
         self.__grupa = grupa
 
     def get_student_id(self):
-        if self.__student_id < 0:
-            raise ValueError("Student ID invalid!")
         return self.__student_id
 
     def get_nume(self):

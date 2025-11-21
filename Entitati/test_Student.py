@@ -33,5 +33,10 @@ class TestStudent(TestCase):
         self.assertTrue(student.get_grupa() == 456)
 
     def testExceptie(self):
-        student = Student(-1, "Mihai", 321)
-        self.assertRaises(ValueError, student.get_student_id)
+        with self.assertRaises(ValueError):
+            s = Student(-1, "Mihai", 321)
+            s.set_student_id(2)
+            s.set_student_id(-1)
+
+
+

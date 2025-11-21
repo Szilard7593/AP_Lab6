@@ -1,12 +1,13 @@
 class ProblemaLaborator:
     def __init__(self,numar_laborator: int,numar_problema: int,descriere: str,deadline: str):
+        if numar_laborator < 0 or numar_problema < 0:
+            raise ValueError("Numar invalid!")
         self.__numar_laborator = numar_laborator
         self.__numar_problema = numar_problema
         self.__descriere = descriere
         self.__deadline = deadline
 
     def get_numar_laborator(self):
-
         return self.__numar_laborator
 
     def get_numar_problema(self):

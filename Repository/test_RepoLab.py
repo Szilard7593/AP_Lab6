@@ -46,6 +46,4 @@ class TestRepoLab(TestCase):
         repo = RepoLab()
         repo.addLab(l1)
         repo.addLab(l2)
-        l = repo.find_id(2)
-        assert l == 2
 

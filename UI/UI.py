@@ -6,7 +6,6 @@ class UI:
         self.__serviceLab = serviceLab
         self.__serviceNota = serviceNota
 
-
     @staticmethod
     def meniu():
        print("1.Adauga un student")
@@ -85,6 +84,7 @@ class UI:
             print("Laboratorul a fost adaugat cu succes!")
         except Exception as e:
             print(e)
+
     def AfiseazaStudenti(self):
         studenti = self.__serviceStudent.get_toti_studentii()
         for student in studenti:

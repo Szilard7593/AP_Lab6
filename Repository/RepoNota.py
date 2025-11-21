@@ -8,17 +8,16 @@ class RepoNota:
         self.__note.append(note)
 
     def getNote(self):
-        return list(self.__note)
+        return self.__note
 
     def getall(self):
-        return list(self.__note)
+        return self.__note
 
     def lista_studenti_problema_alfabetic(self, numar_lab: int, numar_prob: int):
 
         note_problema = [
             n for n in self.__note
-            if n.get_problema_lab().get_numar_laborator() == numar_lab
-               and n.get_problema_lab().get_numar_problema() == numar_prob
+            if n.get_problema_lab().get_numar_laborator() == numar_lab and n.get_problema_lab().get_numar_problema() == numar_prob
         ]
 
         note_sortate = sorted(note_problema, key=lambda n: n.get_nume())

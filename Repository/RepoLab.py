@@ -11,12 +11,13 @@ class RepoLab:
         self.__labs.append(lab)
 
     def getLabs(self):
-        return list(self.__labs)
+        return self.__labs
 
     def deleteLab(self, numar_laborator: int ):
-        for lab in self.__labs:
-            if lab.get_numar_problema() == numar_laborator:
-                self.__labs.remove(lab)
+        l = self.find_by_id(numar_laborator)
+        if l:
+            self.__labs.remove(l)
+            return
         raise ValueError("Nu esxista lab-ul")
 
     def updateLab(self, numar_laborator: int , numar_problema: int, description: str, deadline: str):
@@ -25,16 +26,13 @@ class RepoLab:
                 self.__labs.remove(lab)
                 l = ProblemaLaborator(numar_laborator, numar_problema, description, deadline)
                 self.__labs.append(l)
+                return
         raise ValueError("Nu exista lab-ul")
 
     def find_by_id(self,numar_laborator: int):
         for lab in self.__labs:
-            if lab.get_numar_problema() == numar_laborator:
+            if lab.get_numar_laborator() == numar_laborator:
                 return lab
         raise ValueError("Nu sa gasit")
 
-    def find_id(self,numar_laborator: int):
-        for lab in self.__labs:
-            if lab.get_numar_laborator() == numar_laborator:
-                return lab.get_numar_laborator()
-        raise ValueError("Nu sa gasit problema")
+

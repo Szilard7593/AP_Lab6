@@ -11,7 +11,7 @@ class RepoStudent:
         self.__students.append(student)
 
     def getAllStudents(self):
-        return list(self.__students)
+        return self.__students
 
     def getStudentById(self, id):
         for student in self.__students:
@@ -25,6 +25,8 @@ class RepoStudent:
         for student in self.__students:
             if student.get_student_id() == id:
                 self.__students.remove(student)
+                return
+        raise ValueError(f"Nu există student cu ID-ul {id}!")
 
 
 
