@@ -16,8 +16,8 @@ class TestserviceNota(TestCase):
         problema = ProblemaLaborator(1, 1, "Introducere", "11.10.2025")
         service.addNote(student, problema, 1)
         m = repo.getNote()
-        assert len(m) == 1
+        self.assertEqual(m[0].get_nota(), 1)
 
     def test_get_nota(self):
         nota = Nota(Student(1, 'd', 1), ProblemaLaborator(1, 1, 'd', 'd'), 1)
-        assert nota.get_nota() == 1
+        self.assertEqual(nota.get_nota(), 1)

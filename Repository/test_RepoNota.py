@@ -14,7 +14,7 @@ class TestRepoNota(TestCase):
         nota = Nota(student,problema,1)
         repo.addNote(nota)
         m = repo.getNote()
-        assert len(m) == 1
+        self.assertEqual(m[0],nota)
 
     def test_getall(self):
         repo = RepoNota()
@@ -23,5 +23,5 @@ class TestRepoNota(TestCase):
         nota = Nota(student, problema, 1)
         repo.addNote(nota)
         m = repo.getall()
-        assert m[0] == nota
+        self.assertEqual(m[0], nota)
 

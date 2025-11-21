@@ -6,69 +6,50 @@ from Entitati.Student import Student
 
 #TODO Sa folosim assert-urile din unittest, nu cele antice
 class TestNota(TestCase):
-    def test_get_nota(self):
-        s = Student(1, "Mihai", 321)
-        p = ProblemaLaborator(1, 1, "Introducere", "11.10.2025")
-        s1 = Nota(s, p, 1)
-        assert s1.get_nota() == 1
-        assert s1.get_student() == s
-        assert s1.get_problema_lab() == p
-        assert s1.get_student_id() == 1
-        assert s1.get_nume() == "Mihai"
-        assert s1.get_grupa() == 321
+    def setUp(self):
+        self.s = Student(1, "Mihai", 321)
+        self.s3 = Student(3, "Ana", 456)
+        self.p = ProblemaLaborator(1, 1, "Introducere", "11.10.2025")
+        self.q = ProblemaLaborator(1, 2, "Problema 2", "12.12.1015")
+        self.nota = Nota(self.s, self.p, 1)
 
+    def test_get_nota(self):
+        self.assertEqual(self.nota.get_nota(), 1)
 
     def test_set_nota(self):
-        s = Student(1, "Mihai", 321)
-        p = ProblemaLaborator(1, 1, "Introducere", "11.10.2025")
-        s1 = Nota(s, p, 1)
-        s1.set_nota(2)
-        assert s1.get_nota() == 2
+        self.nota.set_nota(2)
+        self.assertEqual(self.nota.get_nota(), 2)
 
     def test_get_student(self):
-        s = Student(1, "Mihai", 321)
-        p = ProblemaLaborator(1, 1, "Introducere", "11.10.2025")
-        s1 = Nota(s, p, 1)
-        assert s1.get_student() == s
-        assert s1.get_student_id() == 1
-        assert s1.get_nume() == "Mihai"
+        self.assertEqual(self.nota.get_student(), self.s)
+        self.assertEqual(self.nota.get_student_id(), 1)
+        self.assertEqual(self.nota.get_nume(), "Mihai")
 
     def test_get_problema_lab(self):
-        s = Student(1, "Mihai", 321)
-        p = ProblemaLaborator(1, 1, "Introducere", "11.10.2025")
-        s1 = Nota(s, p, 1)
-        assert s1.get_problema_lab() == p
+        self.assertEqual(self.nota.get_problema_lab(), self.p)
 
     def test_set_student(self):
-        s = Student(1, "Mihai", 321)
-        p = ProblemaLaborator(1, 1, "Introducere", "11.10.2025")
-        s3 = Student(3, "Ana", 456)
-        s1 = Nota(s, p, 1)
-        s1.set_student(s3)
-        assert s1.get_student() == s3
+        self.nota.set_student(self.s3)
+        self.assertEqual(self.nota.get_student(), self.s3)
 
     def test_set_problema_lab(self):
-        s = Student(1, "Mihai", 321)
-        p = ProblemaLaborator(1, 1, "Introducere", "11.10.2025")
-        q = ProblemaLaborator(1, 2, "Problema 2", "12.12.1015")
-        s1 = Nota(s, p, 1)
-        s1.set_problema_lab(q)
-        assert s1.get_problema_lab() == q
+        self.nota.set_problema_lab(self.q)
+        self.assertEqual(self.nota.get_problema_lab(), self.q)
 
     def test_get_student_id(self):
-        s = Student(1, "Mihai", 321)
-        p = ProblemaLaborator(1, 1, "Introducere", "11.10.2025")
-        s1 = Nota(s, p, 1)
-        assert s1.get_student_id() == 1
+        self.assertEqual(self.nota.get_student_id(), 1)
 
     def test_get_nume(self):
-        s = Student(1, "Mihai", 321)
-        p = ProblemaLaborator(1, 1, "Introducere", "11.10.2025")
-        s1 = Nota(s, p, 1)
-        assert s1.get_nume() == "Mihai"
+        self.assertEqual(self.nota.get_nume(), "Mihai")
 
     def test_get_grupa(self):
-        s = Student(1, "Mihai", 321)
-        p = ProblemaLaborator(1, 1, "Introducere", "11.10.2025")
-        s1 = Nota(s, p, 1)
-        assert s1.get_grupa() == 321
+        self.assertEqual(self.nota.get_grupa(), 321)
+
+    def testExceptiiIdNegativ(self):
+        with self.assertRaises(ValueError):
+            s = Student(-1, "Mihai", 321)
+
+    def testExceptiiSetariNegativ(self):
+        with self.assertRaises(ValueError):
+            s = Student(1, "Mihai", 321)
+            s.set_student_id(-1)

@@ -1,13 +1,11 @@
-from Entitati.ProblemaLaborator import ProblemaLaborator
-
-
 class RepoLab:
     def __init__(self):
         self.__labs = []
 
     def addLab(self, lab):
-        if lab.get_numar_laborator() < 0 and lab.get_numar_problema() < 0:
-            raise ValueError("Entitate invalida")
+        for labs in self.__labs:
+            if labs.get_numar_laborator() == lab.get_numar_laborator() and labs.get_numar_problema() == lab.get_numar_problema():
+                raise ValueError("Lab-ul exista deja")
         self.__labs.append(lab)
 
     def getLabs(self):
@@ -23,9 +21,8 @@ class RepoLab:
     def updateLab(self, numar_laborator: int , numar_problema: int, description: str, deadline: str):
         for lab in self.__labs:
             if lab.get_numar_laborator() == numar_laborator and lab.get_numar_problema() == numar_problema:
-                self.__labs.remove(lab)
-                l = ProblemaLaborator(numar_laborator, numar_problema, description, deadline)
-                self.__labs.append(l)
+                lab.set_descriere(description)
+                lab.set_deadline(deadline)
                 return
         raise ValueError("Nu exista lab-ul")
 

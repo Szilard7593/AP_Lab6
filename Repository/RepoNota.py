@@ -3,8 +3,6 @@ class RepoNota:
         self.__note = []
 
     def addNote(self, note):
-        if note.get_nota() < 1 or note.get_nota() > 10:
-            raise ValueError("Nota invalida")
         self.__note.append(note)
 
     def getNote(self):

@@ -3,8 +3,6 @@ class RepoStudent:
         self.__students = []
 
     def addStudent(self, student):
-        if student.get_student_id() < 0:
-            raise ValueError("Student ID cannot be negative")
         for stud in self.__students:
             if stud.get_student_id() == student.get_student_id():
                 raise ValueError("Student ID already exists")
@@ -27,6 +25,15 @@ class RepoStudent:
                 self.__students.remove(student)
                 return
         raise ValueError(f"Nu există student cu ID-ul {id}!")
+
+    def updateStudent(self,id: int,nume,grupa):
+        for student in self.__students:
+            if student.get_student_id() == id:
+                student.set_nume(nume)
+                student.set_grupa(grupa)
+                return
+        raise ValueError("Studentul nu exista")
+
 
 
 
