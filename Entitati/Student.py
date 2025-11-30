@@ -1,13 +1,17 @@
-class Student:
+from Entitati.BaseEntity import BaseEntity
+
+
+class Student(BaseEntity):
     def __init__(self,student_id:int , nume: str ,grupa: int):
         if int(student_id) < 0:
             raise ValueError("Student ID invalid!")
-        self.__student_id = student_id
+
+        super().__init__(student_id)
         self.__nume = nume
         self.__grupa = grupa
 
     def get_student_id(self):
-        return self.__student_id
+        return super().getID()
 
     def get_nume(self):
         return self.__nume
@@ -18,7 +22,7 @@ class Student:
     def set_student_id(self,student_id):
         if student_id < 0:
             raise ValueError("Student ID invalid!")
-        self.__student_id = student_id
+        super().setID(student_id)
 
 
     def set_nume(self,nume):
@@ -28,7 +32,7 @@ class Student:
         self.__grupa = grupa
 
     def __str__(self):
-        return f"Student( ID: {self.__student_id} , Nume: {self.__nume} , Grupa: {self.__grupa})"
+        return f"Student( ID: {super().__str__()} , Nume: {self.__nume} , Grupa: {self.__grupa})"
 
     def __repr__(self):
-        return f"Student(student_id={self.__student_id}, nume={self.__nume}, grupa={self.__grupa})"
+        return f"Student(student_id={super().__str__()}, nume={self.__nume}, grupa={self.__grupa})"

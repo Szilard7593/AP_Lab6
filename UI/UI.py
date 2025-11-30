@@ -18,10 +18,10 @@ class UI:
        print("8.Update laborator")
        print("9.Cauta un student")
        print("10.Cauta o problema de laborator")
-       print("20.Noteaza un student: ")
-       print("21.Arata toate notele studentilor:")
-       print("24.Lista de studenți și notele lor la o problema de laborator data, ordonata: alfabetic după nume, după notă.")
-       print("13.Exit")
+       print("11.Noteaza un student")
+       print("12.Arata toate notele studentilor")
+       print("13.Lista de studenți și notele lor la o problema de laborator data, ordonata: alfabetic după nume, după notă.")
+       print("0.Exit")
 
     def run(self):
         while True:
@@ -49,16 +49,16 @@ class UI:
                     self.CautaunStudent()
                 case 10:
                     self.CautaunLaborator()
-                case 13:
-                    exit(0)
-                case 21:
-                    self.print_all_note()
-                case 20:
+                case 11:
                     self.AdaugaNotare()
-                case 24:
+                case 12:
+                    self.print_all_note()
+                case 13:
                     self.afiseaza_studenti_problema_alfabetic()
                     self.afiseaza_studenti_problema_dupa_nota()
                     self.afiseaza_studenti_media_sub_5()
+                case 0:
+                    exit(0)
                 case _:
                     print("Optiune inexistenta!")
                     continue

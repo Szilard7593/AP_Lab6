@@ -38,5 +38,10 @@ class TestStudent(TestCase):
             s = Student(1, "Mihai", 1)
             s.set_student_id(-1)
 
-
+    def testMedotaAntica(self):
+        try:
+            s = Student(-1, "Mihai", 321)
+            assert(False)
+        except ValueError:
+            assert(True)
 

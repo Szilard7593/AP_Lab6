@@ -27,9 +27,6 @@ class TestRepoLab(TestCase):
         repo.deleteLab(2)
         self.assertEqual(len(repo.getLabs()), 0)
 
-    def test_update_lab(self):
-        pass
-
     def test_find_by_id(self):
         l1 = ProblemaLaborator(1, 1, "Introducere", "11.10.2025")
         l2 = ProblemaLaborator(2, 2, "Problema 2", "12.12.1015")

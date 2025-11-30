@@ -1,14 +1,18 @@
-class ProblemaLaborator:
+from Entitati.BaseEntity import BaseEntity
+
+
+class ProblemaLaborator(BaseEntity):
     def __init__(self,numar_laborator: int,numar_problema: int,descriere: str,deadline: str):
         if numar_laborator < 0 or numar_problema < 0:
             raise ValueError("Numar invalid!")
-        self.__numar_laborator = numar_laborator
+
+        super().__init__(numar_laborator)
         self.__numar_problema = numar_problema
         self.__descriere = descriere
         self.__deadline = deadline
 
     def get_numar_laborator(self):
-        return self.__numar_laborator
+        return super().getID()
 
     def get_numar_problema(self):
         return self.__numar_problema
@@ -22,7 +26,7 @@ class ProblemaLaborator:
     def set_numar_laborator(self,numar_laborator):
         if numar_laborator < 0:
             raise ValueError("Numar laborator invalid!")
-        self.__numar_laborator = numar_laborator
+        super().setID(numar_laborator)
 
     def set_numar_problema(self,numar_problema):
         if numar_problema < 0:
@@ -36,4 +40,4 @@ class ProblemaLaborator:
         self.__deadline = deadline
 
     def __str__(self):
-        return f"LAB(Numar laborator: {self.__numar_laborator} , Numar problema: {self.__numar_problema} , Descriere: {self.__descriere} , Deadline: {self.__deadline})"
+        return f"LAB(Numar laborator: {super().__str__()} , Numar problema: {self.__numar_problema} , Descriere: {self.__descriere} , Deadline: {self.__deadline})"
