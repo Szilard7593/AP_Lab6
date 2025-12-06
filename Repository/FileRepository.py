@@ -126,7 +126,7 @@ class FileRepository_Nota(RepoNota):
             l_nr = nota.get_problema_lab()
             val = nota.get_nota()
 
-            f.write(f"{s_id}~{l_nr}~{val}\n")
+            f.write(f"{s_id},{l_nr},{val}\n")
 
     def __file_overwrite(self):
         with open(self.__fisier, "w") as f:
