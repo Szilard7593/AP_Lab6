@@ -1,0 +1,3 @@
+Student( ID: 1 , Nume: Miha , Grupa: 111)~LAB(Numar laborator: 1 , Numar problema: 1 , Descriere: Descriere mai asa , Deadline: saptamana viitoare
+)~10
+Student( ID: 5 , Nume: Ana , Grupa: 123)~LAB(Numar laborator: 2 , Numar problema: 2 , Descriere: Ceva asa , Deadline: oricand)~7

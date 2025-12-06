@@ -36,3 +36,4 @@ class Student(BaseEntity):
 
     def __repr__(self):
         return f"Student(student_id={super().__str__()}, nume={self.__nume}, grupa={self.__grupa})"
+

@@ -1,6 +1,7 @@
 from Entitati.Nota import Nota
 from Entitati.ProblemaLaborator import ProblemaLaborator
 from Entitati.Student import Student
+from Repository.FileRepository import FileRepository_Student, FileRepository_ProblemaLab, FileRepository_Nota
 from Repository.RepoLab import RepoLab
 from Repository.RepoNota import RepoNota
 from Repository.RepoStudent import RepoStudent
@@ -11,14 +12,14 @@ from UI.UI import UI
 
 
 def main():
-    student_repo = RepoStudent()
-    problema_repo = RepoLab()
-    nota_repo = RepoNota()
+    student_repo = FileRepository_Student("student.txt")
+    problema_repo = FileRepository_ProblemaLab("laboratoarea.txt")
+    nota_repo = FileRepository_Nota("note.txt",student_repo,problema_repo)
 
     student_service = serviceStudent(student_repo)
     problema_service = ServiceLab(problema_repo)
     nota_service = serviceNota(nota_repo)
-
+    '''
     s1 = Student(1, "Mihai", 321)
     s2 = Student(2, "Daria", 123)
     s3 = Student(3, "Ana", 456)
@@ -60,6 +61,7 @@ def main():
     nota_repo.addNote(n3)
     nota_repo.addNote(n4)
     nota_repo.addNote(n5)
+    '''
 
     console = UI(student_service, problema_service,nota_service)
     console.run()

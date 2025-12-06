@@ -8,6 +8,10 @@ class RepoStudent:
                 raise ValueError("Student ID already exists")
         self.__students.append(student)
 
+
+
+
+
     def getAllStudents(self):
         return self.__students
 
@@ -20,7 +24,7 @@ class RepoStudent:
     #TODO De implementat in Java ca sa ved daca putem elimina
     #in timp ce o interam
     def deleteStudent(self, id):
-        for student in self.__students[:]:#inainte noi interam peste o copie si modificam pe lista
+        for student in self.__students[:]:
             if student.get_student_id() == id:
                 self.__students.remove(student)
                 return
