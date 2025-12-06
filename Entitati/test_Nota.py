@@ -53,3 +53,9 @@ class TestNota(TestCase):
         with self.assertRaises(ValueError):
             s = Student(1, "Mihai", 321)
             s.set_student_id(-1)
+
+    def notaIncorecta(self):
+        with self.assertRaises(ValueError):
+            n = Nota(self.s,self.p,11)
+
+

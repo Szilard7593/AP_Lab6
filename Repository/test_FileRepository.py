@@ -180,3 +180,14 @@ class TestFileRepository_Nota(TestCase):
         with open(self.fisier,"r") as f:
             content = f.read()
             self.assertIn("10",content)
+
+    def test_load_relationships(self):
+        self.repoStud.addStudent(self.s1)
+        self.repoLab.addLab(self.l1)
+        self.repo.addNote(self.n1)
+
+        repo_reload = FileRepository_Nota(self.fisier, self.repoStud, self.repoLab)
+
+        loaded_note = repo_reload.getall()[0]
+        self.assertEqual(loaded_note.get_student().get_nume(), "Miha")
+        self.assertEqual(loaded_note.get_problema_lab().get_descriere(), "Ceva")
